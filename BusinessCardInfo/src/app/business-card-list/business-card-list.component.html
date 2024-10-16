@@ -1,0 +1,30 @@
+<div class="animated-background"></div>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Business Cards</h2>
+  <div class="mb-3">
+    <input 
+      [(ngModel)]="filter" 
+      class="form-control" 
+      placeholder="Filter ..." 
+    />
+  </div>
+  <ul class="list-group">
+    <li *ngFor="let card of filteredCards()" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <h5>Id: {{ card.id }}</h5>
+        <p><strong>Name:</strong> {{ card.name }}</p>
+        <p><strong>Gender:</strong> {{ card.gender }}</p>
+        <p><strong>DOB:</strong> {{ card.dateOfBirth }}</p>
+        <p><strong>Email:</strong> {{ card.email }}</p>
+        <p><strong>Phone:</strong> {{ card.phone }}</p>
+        <p><strong>Address:</strong> {{ card.address }}</p>
+        <img *ngIf="card.photoBase64" [src]="card.photoBase64" alt="Photo" class="img-thumbnail" style="max-width: 100px;"/>
+      </div>
+      <div>
+        <button class="btn btn-danger btn-sm" (click)="confirmDelete(card.id)">Delete</button>
+        <button class="btn btn-primary btn-sm" (click)="exportCard(card.id, 'xml')">Export as XML</button>
+        <button class="btn btn-secondary btn-sm" (click)="exportCard(card.id, 'csv')">Export as CSV</button>
+      </div>
+    </li>
+  </ul>
+</div>
